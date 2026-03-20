@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vow Moments — Cinematic Storytelling</title>
+    <script>
+        // GitHub Pages 404 redirect to index.html
+        // This handles client-side routing for single-page apps
+
+        (function() {
+            // Get the full path
+            const path = window.location.pathname;
+
+            // Extract segments
+            const segments = path.split('/').filter(Boolean);
+
+            // Determine base path and redirect path
+            let basePath = '/';
+            let redirectPath = '/';
+
+            // If there are segments, first one is likely repo name
+            if (segments.length > 0) {
+                // Check if this looks like a repo name
+                if (!segments[0].includes('.') && segments[0] !== 'index.html') {
+                    basePath = '/' + segments[0] + '/';
+                    // Rest is the actual path
+                    if (segments.length > 1) {
+                        redirectPath = '/' + segments.slice(1).join('/');
+                    }
+                }
+            }
+
+            // Store for the app to handle
+            sessionStorage.setItem('redirectPath', redirectPath);
+            sessionStorage.setItem('basePath', basePath);
+
+            // Redirect to index.html
+            window.location.replace(basePath + 'index.html');
+        })();
+    </script>
+</head>
+
+<body>
+    <p>Redirecting...</p>
+</body>
+
+</html>
